@@ -5,18 +5,18 @@ const usersRoutes = Router();
 
 
 function myMiddleware(request, response, next) {
-    console.log("Você passou pelo Middleware!");
+    console.log("Hi Middleware!");
     
     if(!request.body.isAdmin) {
-        return response.status(401).json({ error: "Acesso negado!" });
+        return response.status(401).json({ error: "Access denied!" });
     }
     
-    next() //Para que o middleware continue a execução do próximo recurso da aplicação
+    next()
 }
 
 const usersController = new UsersController();
 
 usersRoutes.post("/", myMiddleware, usersController.create)
+usersRoutes.put( "/:id", usersController.update);
 
-// Para expor as rotas
 module.exports = usersRoutes;

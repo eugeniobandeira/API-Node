@@ -7,9 +7,9 @@ const usersRoutes = Router();
 function myMiddleware(request, response, next) {
     console.log("Hi Middleware!");
     
-    if(!request.body.isAdmin) {
-        return response.status(401).json({ error: "Access denied!" });
-    }
+    // if(!request.body.isAdmin) {
+    //     return response.status(401).json({ error: "Access denied!" });
+    // }
     
     next()
 }

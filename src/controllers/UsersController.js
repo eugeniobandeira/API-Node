@@ -41,8 +41,8 @@ class UsersController {
                 throw new AppError("This e-mail is already being used.");
             }
         
-        user.name = name;
-        user.email = email;
+        user.name = name ?? user.name;
+        user.email = email ?? user.email;
 
         if(password && !old_password) {
             throw new AppError("You need to inform the current password to set a new password");
@@ -62,9 +62,9 @@ class UsersController {
             name = ?,
             email = ?,
             password = ?,
-            update_at = ?
+            update_at = DATETIME('now')
             WHERE id = ?`,
-            [user.name, user.email, user.password, new Date(), id]
+            [user.name, user.email, user.password, id]
         );
 
         return response.json();
